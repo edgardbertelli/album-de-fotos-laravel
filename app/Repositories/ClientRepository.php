@@ -16,6 +16,10 @@ class ClientRepository implements ClientInterface
     }
 
     public function index() {
-        return Auth::user();
+        return $this->client->all();
+    }
+
+    public function show($id) {
+        return $this->client->find($id);
     }
 }

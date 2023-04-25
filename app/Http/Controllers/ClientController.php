@@ -21,7 +21,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('clients', [
+        return view('clients.index', [
             'clients' => $this->clientService->index()
         ]);
     }
@@ -45,7 +45,9 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('clients.show', [
+            'client' => $this->clientService->show($id)
+        ]);
     }
 
     /**

@@ -19,4 +19,13 @@ class ClientService
     public function index() {
         return $this->clientInterface->index();
     }
+
+    /**
+     * Retorna um cliente.
+     * 
+     * @param  int  $id
+     */
+    public function show($id) {
+        return $this->clientInterface->show($id);
+    }
 }
