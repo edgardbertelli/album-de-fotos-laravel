@@ -31,17 +31,25 @@ class Client extends Model
     public $incrementing = true;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'full_name',
+        'username',
+        'cpf',
+        'rg',
+        'birth_date',
+        'email',
+        'phone_number',
+        'status'
+    ];
+
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
     public $timestamps = true;
-
-    /**
-     * Get the user that owns the comment.
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

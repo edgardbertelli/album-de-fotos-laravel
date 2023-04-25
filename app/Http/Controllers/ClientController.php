@@ -26,6 +26,11 @@ class ClientController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('clients.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,7 +39,8 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->clientService->store($request);
+        return redirect()->route('clients.index');
     }
 
     /**

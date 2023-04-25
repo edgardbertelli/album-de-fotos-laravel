@@ -5,15 +5,29 @@
         </h2>
     </x-slot>
 
+
+    <div class="flex items-center justify-end mt-4">
+        <a href="{{ route('clients.create') }}" type="button">
+            <x-button class="ml-3" type="button">
+                {{ __('Adicionar') }}
+            </x-button>
+        </a>
+    </div>
+
     <div class="py-12">
+        @foreach($clients as $client)
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @foreach($clients as $client)
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="{{ route('clients.show', $client->id) }}">{{ $client->full_name }}</a>
+                    <p>{{ $client->full_name }}</p>
+                    <a href="{{ route('clients.show', $client->id) }}" type="button">
+                        <x-button class="ml-3" type="button">
+                            {{ __('Detalhes') }}
+                        </x-button>
+                    </a>
                 </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
 </x-app-layout>
