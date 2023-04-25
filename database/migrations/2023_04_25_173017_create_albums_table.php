@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfilesTable extends Migration
+class CreateAlbumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('albums', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['instagram', 'facebook', 'twitter', 'tiktok', 'outros']);
-            $table->string('username');
-            $table->string('url');
-            $table->date('accessed_at');
             $table->unsignedBigInteger('client');
+            $table->enum('type', ['imagem', 'video']);
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->enum('permission', ['publico', 'restrito', 'bloqueado', 'excluido']);
             $table->timestamps();
         });
 
-        Schema::table('profiles', function (Blueprint $table) {
+        Schema::table('albums', function (Blueprint $table) {
             $table->foreign('client')->references('id')->on('clients');
         });
     }
@@ -35,6 +35,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('albums');
     }
 }

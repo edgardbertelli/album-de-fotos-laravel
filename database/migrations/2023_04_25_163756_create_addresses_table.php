@@ -20,9 +20,13 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->string('street');
             $table->string('number');
-            $table->string('details');
-            $table->unsignedBigInteger('clients');
+            $table->string('details')->nullable();
+            $table->unsignedBigInteger('client');
             $table->timestamps();
+        });
+
+        Schema::table('addresses', function (Blueprint $table) {
+            $table->foreign('client')->references('id')->on('clients');
         });
     }
 
