@@ -56,6 +56,13 @@ class ClientController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        return view('clients.edit', [
+            'client' => $this->clientService->show($id)
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -65,7 +72,9 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->clientService->update($request, $id);
+
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -76,6 +85,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->clientService->destroy($id);
+        return redirect()->route('clients.index');
     }
 }

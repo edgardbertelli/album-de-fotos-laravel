@@ -25,6 +25,20 @@
                             {{ __('Detalhes') }}
                         </x-button>
                     </a>
+                    <a href="{{ route('clients.edit', $client->id) }}" type="button">
+                        <x-button class="ml-3" type="button">
+                            {{ __('Editar') }}
+                        </x-button>
+                    </a>
+                    
+                    <form action="{{ route('clients.destroy', $client->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <x-button class="ml-3">
+                            {{ __('Apagar') }}
+                        </x-button>
+                    </form>
+
                 </div>
             </div>
         </div>

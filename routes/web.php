@@ -24,7 +24,10 @@ Route::get('/dashboard', function () {
 
 Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
 Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
-Route::get('/clients/{id}', [ClientController::class, 'show'])->name('clients.show');
 Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+Route::get('/clients/{id}', [ClientController::class, 'show'])->name('clients.show');
+Route::get('/clients/edit/{id}', [ClientController::class, 'edit'])->name('clients.edit');
+Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
+Route::put('clients/{id}', [ClientController::class, 'update'])->name('clients.update');
 
 require __DIR__.'/auth.php';

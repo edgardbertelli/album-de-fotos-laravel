@@ -38,4 +38,26 @@ class ClientRepository implements ClientInterface
             'status'       => $request->status
         ]);
     }
+
+    public function update($request, $id)
+    {
+        $client = $this->client::findOrFail($id);
+
+        return $client->update([
+            'full_name'    => $request->full_name,
+            'username'     => $request->username,
+            'cpf'          => $request->cpf,
+            'rg'           => $request->cpf,
+            'birth_date'   => $request->birth_date,
+            'email'        => $request->email,
+            'phone_number' => $request->phone_number,
+            'status'       => $request->status
+        ]);
+    }
+
+    public function destroy(int $id)
+    {
+        $client = $this->client->find($id);
+        return $client->delete();
+    }
 }

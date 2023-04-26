@@ -38,8 +38,14 @@ class ClientService
     public function store($request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:posts|max:255',
-            'body' => 'required',
+            'full_name'    => 'required|string',
+            'username'     => 'required|string|unique:clients',
+            'cpf'          => 'required|string|unique:clients',
+            'rg'           => 'required|string',
+            'birth_date'   => 'required|date',
+            'email'        => 'required|email:rfc,dns',
+            'phone_number' => 'required|string',
+            'status'       => 'required|string'
         ]);
  
         if ($validator->fails()) {
@@ -49,5 +55,32 @@ class ClientService
         }
 
         return $this->clientInterface->store($request);
+    }
+
+    public function update($request, $id)
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'full_name'    => 'required|string',
+        //     'username'     => 'required|string|unique:clients',
+        //     'cpf'          => 'required|string|unique:clients',
+        //     'rg'           => 'required|string',
+        //     'birth_date'   => 'required|date',
+        //     'email'        => 'required|email:rfc,dns',
+        //     'phone_number' => 'required|string',
+        //     'status'       => 'required|string'
+        // ]);
+ 
+        // if ($validator->fails()) {
+        //     return redirect('clients/create')
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
+
+        return $this->clientInterface->update($request, $id);
+    }
+
+    public function destroy($id)
+    {
+        return $this->clientInterface->destroy($id);
     }
 }
